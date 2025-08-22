@@ -1,0 +1,50 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+
+<body class="bg-light">
+  <div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-lg">
+      <div class="card-header bg-primary text-white text-center">
+        <h4 class="mb-0">User List</h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-striped align-middle">
+          <thead class="thead-dark">
+            <tr>
+              <th>Email</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Address</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i=0; i < datalist.length; i++) { %>
+            <tr>
+              <td><%= datalist[i].email %></td>
+              <td><%= datalist[i].firstName %></td>
+              <td><%= datalist[i].lastName %></td>
+              <td><%= datalist[i].address %></td>
+              <td class="text-center">
+                <a
+                  href="/mongo/edit-crud?id=<%= datalist[i].id %>"
+                  class="btn btn-sm btn-warning mr-2"
+                  >Edit</a
+                >
+                <a
+                  href="/mongo/delete-crud?id=<%= datalist[i].id %>"
+                  class="btn btn-sm btn-danger"
+                  onclick="return confirm('Are you sure you want to delete this user?')"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>

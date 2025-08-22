@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - MyApp</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="/mongo/home">MyApp</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="/mongo/home">Home</a></li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="/mongo/crud">Create</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="/get-crud">User List</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header
+      class="jumbotron jumbotron-fluid text-center text-white"
+      style="background: linear-gradient(135deg, #6a11cb, #2575fc)"
+    >
+      <div class="container">
+        <h1 class="display-4">About MyApp</h1>
+        <p class="lead">
+          A CRUD project made simple with Node.js, Express & MySQL
+        </p>
+      </div>
+    </header>
+
+    <!-- About Content -->
+    <div class="container my-5">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4">
+          <img
+            src="https://via.placeholder.com/500x300"
+            alt="About image"
+            class="img-fluid rounded shadow"
+          />
+        </div>
+        <div class="col-md-6">
+          <h2>Our Mission</h2>
+          <p>
+            MyApp is a simple CRUD (Create, Read, Update, Delete) application
+            designed for learning and practicing fullstack development with
+            Node.js, Express, MySQL, and EJS templating.
+          </p>
+          <p>
+            You can <strong>create new users</strong>,
+            <strong>view user list</strong>, <strong>edit user info</strong>,
+            and <strong>delete users</strong>
+            directly from the app.
+          </p>
+          <a href="/mongo/get-crud" class="btn btn-primary">View User List</a>
+        </div>
+      </div>
+
+      <hr class="my-5" />
+
+      <div class="row text-center">
+        <div class="col-md-4 mb-4">
+          <div class="card shadow border-0 h-100">
+            <div class="card-body">
+              <h5 class="card-title">Node.js & Express</h5>
+              <p class="card-text">
+                Backend powered by Express.js with routing and middleware to
+                handle requests.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow border-0 h-100">
+            <div class="card-body">
+              <h5 class="card-title">MySQL Database</h5>
+              <p class="card-text">
+                Data is stored and managed efficiently using MySQL relational
+                database.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow border-0 h-100">
+            <div class="card-body">
+              <h5 class="card-title">EJS Templates</h5>
+              <p class="card-text">
+                Dynamic pages are rendered using EJS template engine with data
+                binding.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+      <p class="mb-0">
+        &copy; <%= new Date().getFullYear() %> MyApp. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

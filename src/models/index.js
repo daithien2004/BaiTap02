@@ -1,7 +1,6 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const path = require('path');
 
 // Reuse the existing sequelize instance configured in configdb
 const { sequelize } = require('../config/configdb');
@@ -16,5 +15,3 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
-
-
