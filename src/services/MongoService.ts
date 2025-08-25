@@ -1,10 +1,10 @@
-const bcrypt = require('bcrypt');
-const User = require('../models/mongoUser'); // import Mongoose model User
+import bcrypt from 'bcrypt';
+import User from '../models/mongoUser.js'; // chú ý thêm .js cho ESM
+import type { IUser } from '../models/mongoUser.js';
 
 const saltRounds = 10;
 
-// Hash password
-const hashUserPassword = async (password) => {
+export const hashUserPassword = async (password: string): Promise<string> => {
   try {
     const hash = await bcrypt.hash(password, saltRounds);
     return hash;
@@ -13,8 +13,18 @@ const hashUserPassword = async (password) => {
   }
 };
 
-// Create new user
-const createNewUser = async (data) => {
+export interface CreateUserData {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  address?: string;
+  phoneNumber?: string;
+  gender?: string; // '1' or '0'
+  roleId?: string;
+}
+
+export const createNewUser = async (data: CreateUserData): Promise<IUser> => {
   try {
     const hashPassword = await hashUserPassword(data.password);
     const newUser = new User({
@@ -24,7 +34,7 @@ const createNewUser = async (data) => {
       lastName: data.lastName,
       address: data.address,
       phoneNumber: data.phoneNumber,
-      gender: data.gender === '1', // true/false
+      gender: data.gender === '1',
       roleId: data.roleId,
     });
     await newUser.save();
@@ -34,8 +44,7 @@ const createNewUser = async (data) => {
   }
 };
 
-// Get all users
-const getAllUsers = async () => {
+export const getAllUsers = async (): Promise<IUser[]> => {
   try {
     const users = await User.find();
     return users;
@@ -44,8 +53,9 @@ const getAllUsers = async () => {
   }
 };
 
-// Get user by ID
-const getUserInfoById = async (userId) => {
+export const getUserInfoById = async (
+  userId: string
+): Promise<IUser | null> => {
   try {
     const user = await User.findById(userId);
     return user;
@@ -54,8 +64,17 @@ const getUserInfoById = async (userId) => {
   }
 };
 
-// Update user
-const updateUser = async (data) => {
+export interface UpdateUserData {
+  id: string;
+  firstName: string;
+  lastName: string;
+  address?: string;
+  phoneNumber?: string;
+  gender?: string;
+  roleId?: string;
+}
+
+export const updateUser = async (data: UpdateUserData): Promise<IUser[]> => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       data.id,
@@ -67,7 +86,7 @@ const updateUser = async (data) => {
         gender: data.gender === '1',
         roleId: data.roleId,
       },
-      { new: true } // trả về document sau khi cập nhật
+      { new: true }
     );
 
     if (!updatedUser) {
@@ -81,8 +100,7 @@ const updateUser = async (data) => {
   }
 };
 
-// Delete user
-const deleteUser = async (userId) => {
+export const deleteUser = async (userId: string): Promise<string> => {
   try {
     const deletedUser = await User.findByIdAndDelete(userId);
     if (!deletedUser) {
@@ -92,12 +110,4 @@ const deleteUser = async (userId) => {
   } catch (error) {
     throw error;
   }
-};
-
-module.exports = {
-  createNewUser,
-  getAllUsers,
-  getUserInfoById,
-  updateUser,
-  deleteUser,
 };

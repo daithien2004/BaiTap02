@@ -1,14 +1,18 @@
-const express = require('express');
-const homeController = require('../controllers/homeController.js');
-const mongoController = require('../controllers/mongoController.js');
+// route/web.ts
+import { Router } from 'express';
+import type { Express } from 'express';
+import * as homeController from '../controllers/homeController.js';
+import * as mongoController from '../controllers/mongoController.js';
 
-const router = express.Router();
+const router: Router = Router();
 
-const initWebRoutes = (app) => {
+const initWebRoutes = (app: Express): void => {
+  // Route test cơ bản
   router.get('/', (req, res) => {
-    return res.send('Quảng Đại Thiện');
+    res.send('Quảng Đại Thiện');
   });
 
+  // Routes homeController
   router.get('/home', homeController.getHomePage);
   router.get('/about', homeController.getAboutPage);
   router.get('/crud', homeController.getCRUD);
@@ -18,6 +22,7 @@ const initWebRoutes = (app) => {
   router.post('/put-crud', homeController.putCRUD);
   router.get('/delete-crud', homeController.deleteCRUD);
 
+  // Routes mongoController
   router.get('/mongo/home', mongoController.getHomePage);
   router.get('/mongo/about', mongoController.getAboutPage);
   router.get('/mongo/crud', mongoController.getCRUD);
@@ -27,7 +32,7 @@ const initWebRoutes = (app) => {
   router.post('/mongo/put-crud', mongoController.putCRUD);
   router.get('/mongo/delete-crud', mongoController.deleteCRUD);
 
-  return app.use('/', router);
+  app.use('/', router);
 };
 
-module.exports = initWebRoutes;
+export default initWebRoutes;

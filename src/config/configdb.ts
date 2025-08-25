@@ -1,6 +1,7 @@
-const { Sequelize } = require('sequelize');
+// config/configdb.ts
+import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize(
+export const sequelize = new Sequelize(
   process.env.DB_NAME || 'node_fulltask',
   process.env.DB_USER || 'root',
   process.env.DB_PASS || 'thien',
@@ -12,14 +13,13 @@ const sequelize = new Sequelize(
   }
 );
 
-const connectDB = async () => {
+const connectDB = async (): Promise<void> => {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Unable to connect to the database:', error);
   }
 };
 
-module.exports = connectDB;
-module.exports.sequelize = sequelize;
+export default connectDB;
