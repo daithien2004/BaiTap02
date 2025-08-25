@@ -6,8 +6,8 @@ import User from './mongoUser.js';
 
 const db: any = {};
 
-db.User = User;
-// db.User = UserModelInit(sequelize, DataTypes);
+// db.User = User;
+db.User = UserModelInit(sequelize, DataTypes);
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

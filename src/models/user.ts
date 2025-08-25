@@ -4,7 +4,7 @@ import type { Optional } from 'sequelize';
 
 // Interface đại diện cho các field của User
 interface IUserAttributes {
-  id: string;
+  id: number;
   email: string;
   password: string;
   firstName: string;
@@ -39,19 +39,22 @@ export class UserModel
   extends Model<IUserAttributes, IUserCreationAttributes>
   implements IUserAttributes
 {
-  public id!: string;
-  public email!: string;
-  public password!: string;
-  public firstName!: string;
-  public lastName!: string;
-  public address?: string;
-  public phoneNumber?: string;
-  public gender?: boolean;
-  public image?: string;
-  public roleId?: string;
-  public positionId?: string;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  declare id: number;
+  declare email: string;
+  declare password: string;
+  declare firstName: string;
+  declare lastName: string;
+
+  // nên để kiểu có thể null thay vì optional để khớp DB nullable
+  declare address?: string;
+  declare phoneNumber?: string;
+  declare gender?: boolean;
+  declare image?: string;
+  declare roleId?: string;
+  declare positionId?: string;
+
+  declare readonly createdAt?: Date;
+  declare readonly updatedAt?: Date;
 
   // Associations
   static associate(models: any) {
@@ -67,8 +70,8 @@ export const UserModelInit = (
   UserModel.init(
     {
       id: {
-        type: dataTypes.UUID,
-        defaultValue: dataTypes.UUIDV4,
+        type: dataTypes.INTEGER, // id kiểu số
+        autoIncrement: true, // tự tăng
         primaryKey: true,
       },
       email: { type: dataTypes.STRING, allowNull: false },
@@ -85,7 +88,7 @@ export const UserModelInit = (
     {
       sequelize,
       modelName: 'User',
-      tableName: 'Users',
+      tableName: 'users',
       timestamps: true,
     }
   );

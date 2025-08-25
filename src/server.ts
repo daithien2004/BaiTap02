@@ -4,7 +4,8 @@ import express from 'express';
 import type { Express } from 'express';
 import viewEngine from './config/viewEngine.js';
 import initWebRoutes from './route/web.js';
-import connectDB from './config/db.js';
+// import connectDB from './config/db.js';
+import connectDB from './config/configdb.js';
 
 const app: Express = express();
 
